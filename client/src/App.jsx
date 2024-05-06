@@ -1,6 +1,11 @@
 import { useState } from "react";
-import beautify from "js-beautify";
-import Run from "./Run";
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/theme-kuroir";
+import "ace-builds/src-noconflict/ext-beautify";
+import "ace-builds/src-noconflict/ext-emmet";
+import "ace-builds/src-noconflict/ext-error_marker";
+import "ace-builds/src-noconflict/ext-language_tools";
 const App = () => {
   const [code, setCode] = useState();
   const [output, setOutput] = useState("");
@@ -9,7 +14,6 @@ const App = () => {
     if (!code) {
       return;
     }
-    formatCode(code);
     try {
       const output = await fetch(
         "http://localhost:9000/run",
@@ -23,50 +27,68 @@ const App = () => {
       );
 
       const json = await output.json();
-      setOutput(json.message.replace(/\n/g, "<br />"));
+      setOutput(json.message);
     } catch (error) {
       console.log(error);
     }
   }
 
-  function formatCode(code) {
-    const beautifiedJS = beautify(code, {
-      indent_size: 2,
-      indent_char: " ",
-      max_preserve_newlines: 0,
-      space_in_empty_paren: true,
-      jslint_happy: true,
-      eval_code: true,
-      end_with_newline: true,
-      wrap_line_length: 0,
-      e4x: true,
-    });
-    setCode(beautifiedJS);
-  }
-
   return (
     <>
       <header>
-        <h1>Online Javascript Compiler</h1>
+        <h2>Online Javascript Compiler</h2>
       </header>
       <div className="main">
         <div className="text_editor">
-          <textarea
+          <div className="header">
+            <h3>Index.js</h3>
+            <div>
+              <button
+                className={code ? "run" : "run disabled"}
+                type="button"
+                onClick={handleCompile}
+                disabled={!code}
+              >
+                Run
+              </button>
+            </div>
+          </div>
+          <AceEditor
+            width="100%"
+            height="100%"
+            placeholder=""
+            mode="javascript"
+            theme="kuroir"
+            name="blah2"
+            onChange={(value) => setCode(value)}
+            fontSize={14}
+            lineHeight={19}
+            showPrintMargin={true}
+            showGutter={true}
+            highlightActiveLine={true}
             value={code}
-            onChange={(e) => setCode(e.target.value)}
+            setOptions={{
+              enableBasicAutocompletion: true,
+              enableLiveAutocompletion: true,
+              showLineNumbers: true,
+              tabSize: 2,
+            }}
           />
         </div>
-        <div
-          className="output"
-          dangerouslySetInnerHTML={{ __html: output }}
-        />
-        <button
-          className="run"
-          type="button"
-          onClick={handleCompile}
-        >
-          <Run />
-        </button>
+        <div className="output">
+          <div className="output_header">
+            <h3>Output</h3>
+            <button
+              className="clear"
+              onClick={() => setOutput("")}
+            >
+              Clear
+            </button>
+          </div>
+          <div className="output_body">
+            <code>{output}</code>
+          </div>
+        </div>
       </div>
     </>
   );

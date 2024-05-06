@@ -1,11 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  user-select: none;
+}
+
 header {
-  height: 70px;
+  height: 50px;
   background: black;
   color: white;
   display: flex;
@@ -15,19 +23,54 @@ header {
 
 .main {
   position: relative;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 50px);
   display: flex;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e8e9e8;
+  padding: 10px 20px;
+  border: 1px solid #d3dce6;
+  height: 48px;
+}
+
+.output_header {
+  padding: 10px 20px;
+  border: 1px solid #d3dce6;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #e8e9e8;
+}
+
 .run {
-  position: absolute;
-  top: 5px;
-  left: 50%;
-  transform: translate(-50%, 0);
   cursor: pointer;
   border: none;
   outline: none;
-  background: none;
+  background: #0556f3;
+  color: white;
+  font-weight: bold;
+  width: 50px;
+  height: 30px;
+  border-radius: 2px;
+}
+
+.clear {
+  font-weight: bold;
+  width: 50px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid #d3dce6;
+  cursor: pointer;
+}
+
+.disabled {
+  background: #5c92ffc9;
+  cursor: not-allowed;
 }
 
 textarea {
@@ -43,16 +86,59 @@ textarea {
   width: 50%;
 }
 
-.text_editor {
-  padding-left: 5px;
+.output {
+  white-space: "pre-wrap";
+  background: #e8e9e8;
 }
 
-.output {
-  padding-left: 25px;
-  white-space: "pre-wrap";
+.output_body {
+  padding-left: 2px;
+  font-size: 16px;
+  overflow: auto;
+  user-select: text;
+}
+
+.output_body code {
+  white-space: pre-line;
 }
 
 .text_editor {
   resize: horizontal;
-  border-right: 3px solid rgba(0, 0, 0, 0.4);
+  height: 100%;
+  border-right: 3px solid #d3dce6;
+}
+
+/* Add this at the end of your existing CSS */
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .text_editor,
+  .output {
+    width: 100%;
+  }
+
+  .header,
+  .output_header {
+    height: auto;
+  }
+
+  .run,
+  .clear {
+    width: auto;
+    padding: 8px 12px;
+  }
+
+  .output_body {
+    padding-left: 0;
+  }
+
+  .text_editor {
+    resize: none;
+    border-right: none;
+    border-bottom: 3px solid #d3dce6;
+  }
 }

@@ -32,7 +32,7 @@ app.post("/run", (req, res) => {
       res.json({ status: "error", message: stderr });
       return;
     }
-    res.json({ status: "ok", message: stdout.trim() });
+    res.json({ status: "ok", message: stdout });
   });
 });
 

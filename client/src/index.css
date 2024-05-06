@@ -38,6 +38,7 @@ header {
   position: relative;
   height: calc(100dvh - var(--header-height));
   display: flex;
+  overflow: hidden;
 }
 
 .header {
@@ -152,9 +153,10 @@ textarea {
 
 .text_editor {
   resize: horizontal;
-  height: calc(100dvh - var(--header-height));
+  height: calc(
+    100dvh - (var(--header-height) + var(--header-height))
+  );
   border-right: 2px solid var(--border);
-  padding-bottom: var(--header-height);
 }
 
 sub {

@@ -22,7 +22,7 @@ const App = () => {
     try {
       setLoading(true);
       const output = await fetch(
-        "http://localhost:9000/run",
+        `${import.meta.env.VITE_BACKEND_URL}/run`,
         {
           method: "POST",
           headers: {

@@ -50,6 +50,18 @@ const App = () => {
     );
   }, [dark]);
 
+  useEffect(() => {
+    async function coldStart() {
+      await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/health`
+      )
+        .then((res) => res.json())
+        .then((res) => console.log(res.message))
+        .catch((err) => console.log(err));
+    }
+    coldStart();
+  }, []);
+
   return (
     <>
       <header>

@@ -36,7 +36,7 @@ header {
 
 .main {
   position: relative;
-  height: calc(100vh - 50px);
+  height: calc(100vh - var(--header-height));
   display: flex;
 }
 
@@ -49,6 +49,14 @@ header {
   height: var(--header-height);
   color: var(--color);
   border-bottom: 1px solid var(--border);
+}
+
+header h2 {
+  font-size: 1.5rem;
+}
+
+header h2 sub {
+  font-size: 0.8rem;
 }
 
 .output_header {
@@ -90,6 +98,7 @@ header {
   width: 50px;
 }
 
+.resp-output,
 .clear {
   font-weight: bold;
   width: 50px;
@@ -99,6 +108,10 @@ header {
   cursor: pointer;
   background: var(--bg);
   color: var(--color);
+}
+
+.resp-output {
+  display: none;
 }
 
 .disabled {
@@ -139,10 +152,38 @@ textarea {
 
 .text_editor {
   resize: horizontal;
-  height: 100%;
+  height: calc(100vh - var(--header-height));
   border-right: 2px solid var(--border);
+  padding-bottom: var(--header-height);
 }
 
 sub {
   font-size: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .text_editor {
+    width: 100%;
+    flex-grow: 1;
+  }
+  .resp-output {
+    display: block;
+  }
+  [data-transform="true"].output {
+    position: absolute;
+    right: -50%;
+  }
+  [data-transform="false"].output {
+    position: absolute;
+    right: 0%;
+    width: 100%;
+    z-index: 5;
+  }
+  header h2 {
+    font-size: 1rem;
+  }
+
+  header h2 sub {
+    font-size: 0.6rem;
+  }
 }

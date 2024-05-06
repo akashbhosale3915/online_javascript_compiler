@@ -14,6 +14,7 @@ const App = () => {
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
   const [dark, setDark] = useState(false);
+  const [transform, setTransform] = useState(true);
 
   async function handleCompile() {
     if (!code) {
@@ -21,6 +22,7 @@ const App = () => {
     }
     try {
       setLoading(true);
+      setTransform(!transform);
       const output = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/run`,
         {
@@ -67,6 +69,12 @@ const App = () => {
                 {dark ? <Sun /> : <Moon />}
               </button>
               <button
+                className="resp-output"
+                onClick={() => setTransform(!transform)}
+              >
+                Output
+              </button>
+              <button
                 className={code ? "run" : "run disabled"}
                 type="button"
                 onClick={handleCompile}
@@ -99,15 +107,23 @@ const App = () => {
             }}
           />
         </div>
-        <div className="output">
+        <div className="output" data-transform={transform}>
           <div className="output_header">
             <h3>Output</h3>
-            <button
-              className="clear"
-              onClick={() => setOutput("")}
-            >
-              Clear
-            </button>
+            <div className="buttons">
+              <button
+                className="resp-output"
+                onClick={() => setTransform(!transform)}
+              >
+                Code
+              </button>
+              <button
+                className="clear"
+                onClick={() => setOutput("")}
+              >
+                Clear
+              </button>
+            </div>
           </div>
           <div className="output_body">
             <code>{output}</code>

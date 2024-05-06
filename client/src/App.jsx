@@ -23,6 +23,7 @@ const App = () => {
     try {
       setLoading(true);
       setTransform(!transform);
+      setOutput("");
       const output = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/run`,
         {
@@ -130,15 +131,21 @@ const App = () => {
                 Code
               </button>
               <button
-                className="clear"
-                onClick={() => setOutput("")}
+                className={
+                  loading ? "disabled gray clear" : "clear"
+                }
+                onClick={() => {
+                  setOutput("");
+                  setTransform(!transform);
+                }}
+                disabled={loading}
               >
                 Clear
               </button>
             </div>
           </div>
           <div className="output_body">
-            <code>{output}</code>
+            <code>{loading ? "⌛" : output}</code>
           </div>
         </div>
       </div>

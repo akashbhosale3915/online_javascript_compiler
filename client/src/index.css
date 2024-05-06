@@ -119,6 +119,9 @@ header h2 sub {
   background: #5c92ffc9;
   cursor: not-allowed;
 }
+.disabled.gray {
+  background: #d3dce6;
+}
 
 textarea {
   width: 100%;

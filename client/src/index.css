@@ -14,7 +14,7 @@ body {
 
 header {
   height: 50px;
-  background: black;
+  background: #36454f;
   color: white;
   display: flex;
   justify-content: center;
@@ -54,9 +54,10 @@ header {
   background: #0556f3;
   color: white;
   font-weight: bold;
-  width: 50px;
-  height: 30px;
   border-radius: 2px;
+  padding: 5px 10px;
+  height: 30px;
+  width: 50px;
 }
 
 .clear {

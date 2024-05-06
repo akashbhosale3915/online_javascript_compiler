@@ -9,12 +9,14 @@ import "ace-builds/src-noconflict/ext-language_tools";
 const App = () => {
   const [code, setCode] = useState();
   const [output, setOutput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleCompile() {
     if (!code) {
       return;
     }
     try {
+      setLoading(true);
       const output = await fetch(
         "http://localhost:9000/run",
         {
@@ -28,7 +30,9 @@ const App = () => {
 
       const json = await output.json();
       setOutput(json.message);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }
@@ -47,9 +51,9 @@ const App = () => {
                 className={code ? "run" : "run disabled"}
                 type="button"
                 onClick={handleCompile}
-                disabled={!code}
+                disabled={!code || loading}
               >
-                Run
+                {loading ? "⌛" : "Run"}
               </button>
             </div>
           </div>

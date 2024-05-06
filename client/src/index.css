@@ -48,11 +48,12 @@ header {
   padding: 10px 20px;
   height: var(--header-height);
   color: var(--color);
+  border-bottom: 1px solid var(--border);
 }
 
 .output_header {
   padding: 10px 20px;
-  border: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   height: var(--header-height);
   display: flex;
   align-items: center;
@@ -139,38 +140,9 @@ textarea {
 .text_editor {
   resize: horizontal;
   height: 100%;
-  border-right: 3px solid var(--border);
+  border-right: 2px solid var(--border);
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
-@media screen and (max-width: 768px) {
-  .text_editor,
-  .output {
-    width: 100%;
-  }
-
-  .header,
-  .output_header {
-    height: auto;
-  }
-
-  .run,
-  .clear {
-    width: auto;
-    padding: 8px 12px;
-  }
-
-  .output_body {
-    padding-left: 0;
-  }
-
-  .text_editor {
-    resize: none;
-    border-right: none;
-    border-bottom: 3px solid var(--border);
-  }
+sub {
+  font-size: 10px;
 }

@@ -51,7 +51,9 @@ const App = () => {
   return (
     <>
       <header>
-        <h2>Online Javascript Compiler</h2>
+        <h2>
+          Online Javascript Compiler <sub>by DroidTech</sub>
+        </h2>
       </header>
       <div className="main">
         <div className="text_editor">

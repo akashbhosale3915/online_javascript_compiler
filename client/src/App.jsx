@@ -145,7 +145,9 @@ const App = () => {
             </div>
           </div>
           <div className="output_body">
-            <code>{loading ? "⌛" : output}</code>
+            <code>
+              {loading ? "Processing... ⌛" : output}
+            </code>
           </div>
         </div>
       </div>

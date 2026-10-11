@@ -166,6 +166,12 @@ sub {
   font-size: 10px;
 }
 
+.loading{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
 @media screen and (max-width: 768px) {
   .text_editor {
     width: 100%;

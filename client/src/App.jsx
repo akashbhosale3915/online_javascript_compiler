@@ -9,12 +9,14 @@ import "ace-builds/src-noconflict/ext-error_marker";
 import "ace-builds/src-noconflict/ext-language_tools";
 import Sun from "./Sun";
 import Moon from "./Moon";
+import Loading from "./Loading";
 const App = () => {
   const [code, setCode] = useState();
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
   const [dark, setDark] = useState(false);
   const [transform, setTransform] = useState(true);
+  const [coldStartFlag,setColdStartFlag]=useState(false)
 
   async function handleCompile() {
     if (!code) {
@@ -51,15 +53,19 @@ const App = () => {
     );
   }, [dark]);
 
-  useEffect(() => {
-    async function coldStart() {
+      async function coldStart() {
+      setColdStartFlag(true)
       await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/health`
       )
         .then((res) => res.json())
-        .then((res) => console.log(res.message))
-        .catch((err) => console.log(err));
+        .then((res) => {console.log(res.message)
+          setColdStartFlag(false)
+        })
+        .catch((err) => console.log(err)).finally(()=>{setColdStartFlag(false)})
     }
+
+  useEffect(() => {
     coldStart();
   }, []);
 
@@ -74,6 +80,7 @@ const App = () => {
         <div className="text_editor">
           <div className="header">
             <h3>Index.js</h3>
+            {coldStartFlag && <Loading/>}
             <div className="buttons">
               <button
                 className="theme"
@@ -98,6 +105,7 @@ const App = () => {
             </div>
           </div>
           <AceEditor
+          readOnly={coldStartFlag}
             width="100%"
             height="100%"
             placeholder=""

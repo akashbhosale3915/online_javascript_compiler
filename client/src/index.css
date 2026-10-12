@@ -151,14 +151,16 @@ textarea {
 }
 
 .output_body code {
-  white-space: pre-line;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: monospace;
+  line-height: 1.6;
 }
 
 .text_editor {
   resize: horizontal;
-  height: calc(
-    100dvh - (var(--header-height) + var(--header-height))
-  );
+  height: calc(100dvh - (var(--header-height) + var(--header-height)));
   border-right: 2px solid var(--border);
 }
 
@@ -166,7 +168,7 @@ sub {
   font-size: 10px;
 }
 
-.loading{
+.loading {
   display: flex;
   align-items: center;
   gap: 2px;

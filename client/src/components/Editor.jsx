@@ -9,10 +9,9 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import { useEditorContext } from "../hooks/useEditorContext";
 
 const Editor = () => {
-  const { coldStartFlag, dark, setCode, code } = useEditorContext();
+  const { dark, setCode, code } = useEditorContext();
   return (
     <AceEditor
-      readOnly={coldStartFlag}
       width="100%"
       height="100%"
       placeholder=""

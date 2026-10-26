@@ -8,7 +8,6 @@ export default function EditorContextProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [dark, setDark] = useState(false);
   const [transform, setTransform] = useState(true);
-  const [coldStartFlag, setColdStartFlag] = useState(false);
 
   useEffect(() => {
     document.body.setAttribute("data-theme", dark ? "dark" : "light");
@@ -25,8 +24,6 @@ export default function EditorContextProvider({ children }) {
     setDark,
     transform,
     setTransform,
-    coldStartFlag,
-    setColdStartFlag,
   };
 
   return (

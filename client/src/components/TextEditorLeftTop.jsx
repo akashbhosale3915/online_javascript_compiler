@@ -1,6 +1,5 @@
 import Sun from "./Sun";
 import Moon from "./Moon";
-import Loading from "./Loading";
 import * as prettier from "prettier/standalone";
 import * as babelParser from "prettier/plugins/babel";
 import * as estreePlugin from "prettier/plugins/estree";
@@ -14,7 +13,6 @@ const TextEditorLeftTop = () => {
     setTransform,
     setOutput,
     transform,
-    coldStartFlag,
     dark,
     loading,
     setDark,
@@ -44,7 +42,7 @@ const TextEditorLeftTop = () => {
       await handleFormatCode();
       setTransform(!transform);
       setOutput("");
-      const output = await fetch(`${import.meta.env.VITE_BACKEND_URL}/run`, {
+      const output = await fetch(`${import.meta.env.VITE_BACKEND_URL}`, {
         method: "POST",
         headers: {
           "Content-Type": "text/plain",
@@ -63,7 +61,6 @@ const TextEditorLeftTop = () => {
   return (
     <div className="header">
       <h3>Index.js</h3>
-      {coldStartFlag && <Loading />}
       <div className="buttons">
         <button className="theme" onClick={() => setDark(!dark)}>
           {dark ? <Sun /> : <Moon />}

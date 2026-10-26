@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lucide-react": "^1.61.0",
     "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-ace": "^11.0.1",

@@ -99,6 +99,16 @@ header h2 sub {
   width: 50px;
 }
 
+.file-cta {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.file-input {
+  display: none;
+}
+
 .resp-output,
 .clear {
   font-weight: bold;
